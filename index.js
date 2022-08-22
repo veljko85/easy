@@ -6456,8 +6456,9 @@ var createScene = function () {
     }
     //set post size for small parent post
     if (
-      fencesArr[fencesArr[a].parent].type == "easyFenceHalf" ||
-      fencesArr[fencesArr[a].parent].type == "gardoHalf"
+      fencesArr[a].parent != undefined &&
+      (fencesArr[fencesArr[a].parent].type == "easyFenceHalf" ||
+        fencesArr[fencesArr[a].parent].type == "gardoHalf")
     ) {
       let childTypee = 0;
       for (let i = 0; i < fencesArr[fencesArr[a].parent].children.length; i++) {
