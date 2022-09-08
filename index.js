@@ -84,14 +84,14 @@ let fenceSliderOpen = false;
 function closeSliderContainer() {
   openFenceSlider.style.color = "#333333";
   openFenceSlider.children[2].innerHTML = "+";
-  fenceSliderSection.style.display = "none";
+  fenceSliderSection.style.height = 0;
   fenceSliderOpen = false;
 }
 openFenceSlider.onclick = () => {
   if (!fenceSliderOpen) {
-    openFenceSlider.style.color = "#3967ff";
+    openFenceSlider.style.color = "#faa41a";
     openFenceSlider.children[2].innerHTML = "-";
-    fenceSliderSection.style.display = "block";
+    fenceSliderSection.style.height = "auto";
     fenceSliderOpen = true;
   } else {
     closeSliderContainer();
@@ -1475,7 +1475,7 @@ var createScene = function () {
           if (fencesArr[activeFence].laisnes[i]) {
             designleistensSingle[
               i
-            ].children[0].children[0].style.backgroundColor = "#3967ff";
+            ].children[0].children[0].style.backgroundColor = "#faa41a";
             designleistensSingle[i].children[0].children[0].innerHTML =
               checkMark;
           } else {
@@ -3008,7 +3008,7 @@ var createScene = function () {
   }
   addNewCombineFenceTitle.onclick = () => {
     if (!combineFencesOpen) {
-      // addNewCombineFenceTitle.style.color = "#3967ff";
+      // addNewCombineFenceTitle.style.color = "#faa41a";
       addNewCombineFenceTitle.children[1].innerHTML = "-";
       combineFenceContainer.style.height = "auto";
       combineFencesOpen = true;
@@ -3192,6 +3192,8 @@ var createScene = function () {
               addFenceSings
             );
             rightPosts[i].material = selectedMat;
+            document.getElementsByClassName("accTitle")[0].innerHTML =
+              "einen Artikel hinzufügen";
           }
         )
       );
@@ -3258,6 +3260,8 @@ var createScene = function () {
               addFenceSings
             );
             rightPosts[i].material = selectedMat;
+            document.getElementsByClassName("accTitle")[0].innerHTML =
+              "einen Artikel hinzufügen";
           }
         )
       );
@@ -3324,6 +3328,8 @@ var createScene = function () {
               addFenceSings
             );
             rightPosts[i].material = selectedMat;
+            document.getElementsByClassName("accTitle")[0].innerHTML =
+              "einen Artikel hinzufügen";
           }
         )
       );
@@ -3390,6 +3396,8 @@ var createScene = function () {
               addFenceSings
             );
             rightPosts[i].material = selectedMat;
+            document.getElementsByClassName("accTitle")[0].innerHTML =
+              "einen Artikel hinzufügen";
           }
         )
       );
@@ -3476,6 +3484,8 @@ var createScene = function () {
           //   addFenceSings
           // );
           leftPosts[0].material = selectedMat;
+          document.getElementsByClassName("accTitle")[0].innerHTML =
+            "einen Artikel hinzufügen";
         }
       )
     );
@@ -3548,6 +3558,8 @@ var createScene = function () {
           //   addFenceSings
           // );
           leftPosts[0].material = selectedMat;
+          document.getElementsByClassName("accTitle")[0].innerHTML =
+            "einen Artikel hinzufügen";
         }
       )
     );
@@ -3874,7 +3886,7 @@ var createScene = function () {
     "set-part-designleisten-aus-aluminium"
   );
   if (designleistens.length > 0) {
-    let actCol = "#3967ff";
+    let actCol = "#faa41a";
     let transparent = "transparent";
     let empty = "";
     function addLaisnes(a, b, c, i) {
@@ -5597,6 +5609,24 @@ var createScene = function () {
         ledsRight[fencesArr[h].parent].position.z = 0;
         ledsRight[fencesArr[h].parent].position.y = 0.001;
       }
+      if (h == 0) {
+        if (leftPosts[0].scaling.y < 0.6) {
+          leftPosts[0].scaling.y = 1;
+          leftPosts[0].position.y = 0.962;
+        }
+        if (leftPosts[0].scaling.y > 0.6 && leftPosts[0].scaling.y < 0.9) {
+          leftPosts[0].scaling.y = 1.2;
+          leftPosts[0].position.y = 0.7717;
+        }
+        if (leftPosts[0].scaling.y > 0.9 && leftPosts[0].scaling.y < 1) {
+          leftPosts[0].scaling.y = 1.475;
+          leftPosts[0].position.y = 0.511;
+        }
+        leftPostCaps[0].position.y = 0.962;
+        leds[0].scaling.y = 1;
+        leds[0].position.y = 0.962;
+        leds[0].position.z = 0.001;
+      }
       //for main post
       if (
         h > 0 &&
@@ -5870,7 +5900,7 @@ var createScene = function () {
     "set-part-designleisten-aus-aluminium-single"
   );
   if (designleistensSingle.length > 0) {
-    let actColSin = "#3967ff";
+    let actColSin = "#faa41a";
     let transparentSin = "transparent";
     let emptySin = "";
     function addLaisnesSingle(a, b, c, d, i) {
@@ -6271,7 +6301,7 @@ var createScene = function () {
           if (fencesArr[activeFence].laisnes[i]) {
             createLaisne(i, j);
             fencesArr[j].laisnes[i] = true;
-            addLaisnes("#3967ff", checkMark, true, i);
+            addLaisnes("#faa41a", checkMark, true, i);
           } else {
             disposeLaisne(i, j);
             fencesArr[j].laisnes[i] = false;
@@ -6387,11 +6417,11 @@ var createScene = function () {
 
   //change gardo fence height
   let h76 = document.getElementById("h76");
-  h76.style.color = "#3967ff";
+  h76.style.color = "#faa41a";
   let h85 = document.getElementById("h85");
 
   function setPhostenAct(a, b) {
-    a.style.color = "#3967ff";
+    a.style.color = "#faa41a";
     b.style.color = "#000000";
     a.children[1].innerHTML = checkMark;
     b.children[1].innerHTML = "";
@@ -6642,6 +6672,7 @@ var createScene = function () {
       linkParts.push(prodIds[i] + ":" + prodValues[i] + ",");
     }
     linkParts = linkParts.join("");
+    linkParts = linkParts.slice(0, -1);
     link.href += "?add-to-cart=" + linkParts;
   };
   //parent.imgPDF();
