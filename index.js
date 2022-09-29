@@ -2643,6 +2643,8 @@ var createScene = function () {
       }
       //set Ground
       setGround();
+      // //
+      // console.log(fence.position.x, fence.position.z, fence.rotation.y);
       //for loading
       setTimeout(() => {
         engine.hideLoadingUI();
@@ -2801,13 +2803,18 @@ var createScene = function () {
             "silber",
             0
           );
+          if (i + 1 === fencesCoordinates.length) {
+            setTimeout(() => {
+              localStorage.clear();
+            }, 10000);
+          }
         }
-        localStorage.clear();
       }
 
       clearInterval(refreshIntervalId);
     }
   }
+
   if (document.hidden) {
     var refreshIntervalId = setInterval(handleTabActivnes, 100);
   } else {
@@ -2823,8 +2830,13 @@ var createScene = function () {
           "silber",
           0
         );
+        if (i + 1 === fencesCoordinates.length) {
+          setTimeout(() => {
+            localStorage.clear();
+            console.log("cleared");
+          }, 10000);
+        }
       }
-      localStorage.clear();
     }
   }
   //ADD NEW FENCES
