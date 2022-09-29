@@ -2573,6 +2573,18 @@ var createScene = function () {
           setPhostenAct
         );
       }
+      if (localStorage.getItem("coordinates") != null && !activeFence) {
+        fencesCoordinatesInLoader = localStorage.getItem("coordinates");
+        fencesCoordinatesInLoader = JSON.parse(fencesCoordinatesInLoader);
+        if (fenceId == 0) {
+          fencesArr[0].children = fencesCoordinatesInLoader[0][4];
+          fencesArr[0].parent = undefined;
+        }
+        if (fenceId > 0) {
+          fencesArr[fenceId].children = fencesCoordinatesInLoader[fenceId][4];
+          fencesArr[fenceId].parent = fencesCoordinatesInLoader[fenceId][3];
+        }
+      }
 
       if (fenceId > 0 && typeof activeFence != "boolean") {
         fencesArr[activeFence].children.push(fenceId);
@@ -2631,8 +2643,6 @@ var createScene = function () {
       }
       //set Ground
       setGround();
-      // //
-      // console.log(fence.position.x, fence.position.z, fence.rotation.y);
       //for loading
       setTimeout(() => {
         engine.hideLoadingUI();
@@ -2769,21 +2779,13 @@ var createScene = function () {
     textureGroundZ.update();
   }
   // let fencesCoordinates = [
-  //   [0.94, 0, 0],
-  //   [2.779560270309448, 0, 0],
-  //   [3.6791205406188965, -0.94, 1.5707963267948966],
-  //   [2.7391205406188965, -1.8395602703094482, 3.141592653589793],
+  //   [0.94, 0, 0, 5, [1]],
+  //   [2.779560270309448, 0, 0, 0, [2]],
+  //   [3.6791205406188965, -0.94, 1.5707963267948966, 1, [3]],
+  //   [2.7391205406188965, -1.8395602703094482, 3.141592653589793, 2, []],
   // ];
-  // fencesCoordinates = JSON.stringify(fencesCoordinates);
-
-  // localStorage.setItem("coordinates", fencesCoordinates);
-  if (localStorage.getItem("coordinates") === null) {
-    console.log("nema nista");
-  }
-  fencesCoordinates = localStorage.getItem("coordinates");
-  console.log(fencesCoordinates);
+  let fencesCoordinates = localStorage.getItem("coordinates");
   fencesCoordinates = JSON.parse(fencesCoordinates);
-  console.log(fencesCoordinates);
   //CREATE DEFAULT FENCE
   function handleTabActivnes() {
     if (!document.hidden) {
