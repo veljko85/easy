@@ -2632,6 +2632,7 @@ var createScene = function () {
       //set Ground
       setGround();
       // //
+      // console.log(fence.position.x, fence.position.z, fence.rotation.y);
       //for loading
       setTimeout(() => {
         engine.hideLoadingUI();
@@ -2767,17 +2768,62 @@ var createScene = function () {
     textureContextZ.fillText(textZ, 256, 140);
     textureGroundZ.update();
   }
+  // let fencesCoordinates = [
+  //   [0.94, 0, 0],
+  //   [2.779560270309448, 0, 0],
+  //   [3.6791205406188965, -0.94, 1.5707963267948966],
+  //   [2.7391205406188965, -1.8395602703094482, 3.141592653589793],
+  // ];
+  // fencesCoordinates = JSON.stringify(fencesCoordinates);
+
+  // localStorage.setItem("coordinates", fencesCoordinates);
+  if (localStorage.getItem("coordinates") === null) {
+    console.log("nema nista");
+  }
+  fencesCoordinates = localStorage.getItem("coordinates");
+  console.log(fencesCoordinates);
+  fencesCoordinates = JSON.parse(fencesCoordinates);
+  console.log(fencesCoordinates);
   //CREATE DEFAULT FENCE
   function handleTabActivnes() {
     if (!document.hidden) {
-      createRightFence(0.94, 0, 0, "easyFence", "silber", 0);
+      if (localStorage.getItem("coordinates") === null) {
+        createRightFence(0.94, 0, 0, "easyFence", "silber", 0);
+      } else {
+        for (let i = 0; i < fencesCoordinates.length; i++) {
+          createRightFence(
+            fencesCoordinates[i][0],
+            fencesCoordinates[i][1],
+            fencesCoordinates[i][2],
+            "easyFence",
+            "silber",
+            0
+          );
+        }
+        localStorage.clear();
+      }
+
       clearInterval(refreshIntervalId);
     }
   }
   if (document.hidden) {
     var refreshIntervalId = setInterval(handleTabActivnes, 100);
   } else {
-    createRightFence(0.94, 0, 0, "easyFence", "silber", 0);
+    if (localStorage.getItem("coordinates") === null) {
+      createRightFence(0.94, 0, 0, "easyFence", "silber", 0);
+    } else {
+      for (let i = 0; i < fencesCoordinates.length; i++) {
+        createRightFence(
+          fencesCoordinates[i][0],
+          fencesCoordinates[i][1],
+          fencesCoordinates[i][2],
+          "easyFence",
+          "silber",
+          0
+        );
+      }
+      localStorage.clear();
+    }
   }
   //ADD NEW FENCES
   let addNewFenceNormal = document.getElementById("new-fence-normal");
