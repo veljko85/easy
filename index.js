@@ -2805,12 +2805,11 @@ var createScene = function () {
           );
           if (i + 1 === fencesCoordinates.length) {
             setTimeout(() => {
-              localStorage.clear();
+              localStorage.removeItem("coordinates");
             }, 10000);
           }
         }
       }
-
       clearInterval(refreshIntervalId);
     }
   }
@@ -2832,8 +2831,7 @@ var createScene = function () {
         );
         if (i + 1 === fencesCoordinates.length) {
           setTimeout(() => {
-            localStorage.clear();
-            console.log("cleared");
+            localStorage.removeItem("coordinates");
           }, 10000);
         }
       }
